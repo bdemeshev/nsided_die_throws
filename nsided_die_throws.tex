@@ -1,0 +1,165 @@
+\documentclass{article}
+
+
+
+\usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}		% Can be removed after putting your text content
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{doi}
+
+\usepackage{amsmath}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+
+
+
+\title{Expected number of $n$-sided die throws to collect $k$ points for $k\leq n$}
+
+%\date{September 9, 1985}	% Here you can change the date presented in the paper title
+%\date{} 					% Or removing it
+
+\author{ \href{https://orcid.org/0000-0003-2284-3204}{\includegraphics[scale=0.06]{orcid.pdf}\hspace{1mm}Boris~Demeshev}\thanks{github.com/bdemeshev/me} \\
+	Department of Computer Science, Department of Applied Economics\\
+	State University Higher School of Economics\\
+	Moscow \\
+	\texttt{bdemeshev@hse.ru} \\
+	%% examples of more authors
+	%% \AND
+	%% Coauthor \\
+	%% Affiliation \\
+	%% Address \\
+	%% \texttt{email} \\
+	%% \And
+	%% Coauthor \\
+	%% Affiliation \\
+	%% Address \\
+	%% \texttt{email} \\
+	%% \And
+	%% Coauthor \\
+	%% Affiliation \\
+	%% Address \\
+	%% \texttt{email} \\
+}
+
+% Uncomment to remove the date
+%\date{}
+
+% Uncomment to override  the `A preprint' in the header
+%\renewcommand{\headeright}{Technical Report}
+%\renewcommand{\undertitle}{Technical Report}
+\renewcommand{\shorttitle}{Expected number of throws}
+
+%%% Add PDF metadata to help others organize their library
+%%% Once the PDF is generated, you can check the metadata with
+%%% $ pdfinfo template.pdf
+\hypersetup{
+pdftitle={A template for the arxiv style},
+pdfsubject={q-bio.NC, q-bio.QM},
+pdfauthor={Boris~Demeshev},
+pdfkeywords={First keyword, Second keyword, More},
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+	Expected number of $n$-sided die throws to collect $k$ points 
+	is a geometric series for $k \in \{1, 2 \ldots, n\}$.
+\end{abstract}
+
+
+% keywords can be removed
+\keywords{First keyword \and Second keyword \and More}
+
+
+\section{Link between die and geometric series}
+Let's start with a visual proof of a formula for the finite geometric series sum.
+
+We consider a growing geometric series $(b_j)$ where $b_{j+1} = r b_j$ with ratio $r > 1$.
+Let's draw the numbers!
+
+% here goes the plot
+
+We represent the ratio $r$ as $r = 1 + \alpha$, so $b_{k+j} = b_j + \alpha b_j$.
+
+% here goes the second plot
+
+Adding segments lengths we see that
+
+\[
+b_{k} = b_1 + \alpha (b_1 + b_2 + b_3 + \ldots + b_{k-1})
+\]
+
+This property of geometric series also has an economic intuition. 
+You final wellfare $b_k$ equals your initial wellfare $b_1$ plus all interest payments.
+
+% check! proofs without words! ?
+
+Now let's toss a $n$-sided die until we collect $k$ points or more with $k\leq n$.
+We denote the random number of tosses by $X_k$ and the expected number of tosses 
+by $b_k = \E(X_k)$. 
+
+For sure we'll collect one point or more with exactly one toss, $X_1 = 1$ and hence $b_1 = 1$. 
+
+Now we need to collect $k$ points or more. Let's consider the first toss.
+With probability $(n - k)/n$ the first toss will be sufficient. 
+And with probability $1/n$ we will need to collect $1$, $2$, \ldots, $k-1$ points.
+
+The recurrent equation is
+\[
+b_k = 1 + \frac{n - k}{n} \cdot 0 + \frac{1}{n} (b_1 + b_2 + \ldots + b_{k-1}).
+\]
+This equation coupled with initial condition defines the geometric series with $b_1 = 1$ and ratio $r = 1 + \frac{1}{n}$.
+
+So 
+\[
+\E(X_k) = \left( 1 + \frac{1}{n} \right)^{k-1}
+\]
+
+
+This result appears in disguised form $\E(X_k) = \sum_{i=0}^{k-1} \binom{k-1}{i} / n^i$ in \cite{conroy2021collection}.
+The particular case with $k=n$ is proven in \cite{trevino2020expected}.
+In both these sources the Christmas stockings theorem is invoked in the proof. 
+
+
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}  %%% Uncomment this line and comment out the ``thebibliography'' section below to use the external .bib file (using bibtex) .
+
+
+%%% Uncomment this section and comment out the \bibliography{references} line above to use inline references.
+% \begin{thebibliography}{1}
+
+% 	\bibitem{kour2014real}
+% 	George Kour and Raid Saabne.
+% 	\newblock Real-time segmentation of on-line handwritten arabic script.
+% 	\newblock In {\em Frontiers in Handwriting Recognition (ICFHR), 2014 14th
+% 			International Conference on}, pages 417--422. IEEE, 2014.
+
+% 	\bibitem{kour2014fast}
+% 	George Kour and Raid Saabne.
+% 	\newblock Fast classification of handwritten on-line arabic characters.
+% 	\newblock In {\em Soft Computing and Pattern Recognition (SoCPaR), 2014 6th
+% 			International Conference of}, pages 312--318. IEEE, 2014.
+
+% 	\bibitem{hadash2018estimate}
+% 	Guy Hadash, Einat Kermany, Boaz Carmeli, Ofer Lavi, George Kour, and Alon
+% 	Jacovi.
+% 	\newblock Estimate and replace: A novel approach to integrating deep neural
+% 	networks with existing applications.
+% 	\newblock {\em arXiv preprint arXiv:1804.09028}, 2018.
+
+% \end{thebibliography}
+
+
+\end{document}
