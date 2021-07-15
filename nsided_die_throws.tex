@@ -17,18 +17,19 @@
 \usepackage{natbib}
 \usepackage{doi}
 
+\usepackage{tikz}
 \usepackage{amsmath}
 
 \DeclareMathOperator{\E}{\mathbb{E}}
 
 
 
-\title{Expected number of $n$-sided die throws to collect $k$ points for $k\leq n$}
+\title{Expected number of $n$-sided die throws to collect $k$ points is a geometric series for $k\leq n$}
 
 %\date{September 9, 1985}	% Here you can change the date presented in the paper title
 %\date{} 					% Or removing it
 
-\author{ \href{https://orcid.org/0000-0003-2284-3204}{\includegraphics[scale=0.06]{orcid.pdf}\hspace{1mm}Boris~Demeshev}\thanks{github.com/bdemeshev/me} \\
+\author{ \href{https://orcid.org/0000-0003-2284-3204}{\includegraphics[scale=0.06]{orcid.pdf}\hspace{1mm}Boris~Demeshev}\\ %\thanks{github.com/bdemeshev/me} \\
 	Department of Computer Science, Department of Applied Economics\\
 	State University Higher School of Economics\\
 	Moscow \\
@@ -72,36 +73,58 @@ pdfkeywords={First keyword, Second keyword, More},
 \begin{document}
 \maketitle
 
-\begin{abstract}
-	Expected number of $n$-sided die throws to collect $k$ points 
-	is a geometric series for $k \in \{1, 2 \ldots, n\}$.
-\end{abstract}
+% \begin{abstract}
+%	Expected number of $n$-sided die throws to collect $k$ points 
+%	is a geometric series for $k \in \{1, 2 \ldots, n\}$.
+% \end{abstract}
 
 
 % keywords can be removed
-\keywords{First keyword \and Second keyword \and More}
+% \keywords{First keyword \and Second keyword \and More}
 
 
 \section{Link between die and geometric series}
 Let's start with a visual proof of a formula for the finite geometric series sum.
-
 We consider a growing geometric series $(b_j)$ where $b_{j+1} = r b_j$ with ratio $r > 1$.
-Let's draw the numbers!
+First, we draw the numbers!
 
 % here goes the plot
 
+\tikzset{ext/.pic={
+\path [fill=white] (-0.2,0)to[bend left](0,0.1)to[bend right](0.2,0.2)to(0.2,0)to[bend left](0,-0.1)to[bend right](-0.2,-0.2)--cycle;
+\draw (-0.2,0)to[bend left](0,0.1)to[bend right](0.2,0.2) (0.2,0)to[bend left](0,-0.1)to[bend right](-0.2,-0.2);
+}}
+
+
+\begin{tikzpicture}
+\foreach \Point/\PointLabel in {(0,0)/0, (1,0)/b_1, (1.8,0)/b_2, (2.9,0)/b_3, (4.9,0)/b_4, (8.4,0)/b_{k-1}, (14.2,0)/b_k}
+\draw[fill=black] \Point circle (0.05) node[below] {$\PointLabel$};
+\path [draw] (0,0)--pic [rotate=90]{ext}(13,0);
+\path [draw] (13,0) -- (16,0);
+\end{tikzpicture}
+
 We represent the ratio $r$ as $r = 1 + \alpha$, so $b_{k+j} = b_j + \alpha b_j$.
+Let's write all segments lengths!
 
-% here goes the second plot
+\begin{tikzpicture}
+\foreach \Point/\PointLabel in {(0,0)/0, (1,0)/b_1, (1.8,0)/b_2, (2.9,0)/b_3, (4.9,0)/b_4, (8.4,0)/b_{k-1}, (14.2,0)/b_k}
+\draw[fill=black] \Point circle (0.05) node[below] {$\PointLabel$};
+\path [draw] (0,0)--pic [rotate=90]{ext}(13,0);
+\path [draw] (13,0) -- (16,0);
 
-Adding segments lengths we see that
+\foreach \Point/\PointLabel in {(0.45,0)/b_1, (1.4,0)/\alpha b_1, (2.35,0)/\alpha b_2, (3.9,0)/\alpha b_3, (11.5,0)/\alpha b_{k-1}}
+\draw \Point node[above] {$\PointLabel$};
+\end{tikzpicture}
+		
 
+Adding all segments lengths we see that
 \[
 b_{k} = b_1 + \alpha (b_1 + b_2 + b_3 + \ldots + b_{k-1})
 \]
 
 This property of geometric series also has an economic intuition. 
-You final wellfare $b_k$ equals your initial wellfare $b_1$ plus all interest payments.
+You final wellfare $b_k$ equals your initial wellfare $b_1$ plus all interest payments,
+where $\alpha$ is the nominal rate in the compound interest scheme.
 
 % check! proofs without words! ?
 
@@ -112,26 +135,26 @@ by $b_k = \E(X_k)$.
 For sure we'll collect one point or more with exactly one toss, $X_1 = 1$ and hence $b_1 = 1$. 
 
 Now we need to collect $k$ points or more. Let's consider the first toss.
-With probability $(n - k)/n$ the first toss will be sufficient. 
+With probability $(n - k)/n$ zero more tosses will be required. 
 And with probability $1/n$ we will need to collect $1$, $2$, \ldots, $k-1$ points.
 
-The recurrent equation is
+The recurrence formula is
 \[
 b_k = 1 + \frac{n - k}{n} \cdot 0 + \frac{1}{n} (b_1 + b_2 + \ldots + b_{k-1}).
 \]
 This equation coupled with initial condition defines the geometric series with $b_1 = 1$ and ratio $r = 1 + \frac{1}{n}$.
 
-So 
+Hence we obtain
 \[
-\E(X_k) = \left( 1 + \frac{1}{n} \right)^{k-1}
+b_k = \E(X_k) = \left( 1 + \frac{1}{n} \right)^{k-1}
 \]
 
 
 This result appears in disguised form $\E(X_k) = \sum_{i=0}^{k-1} \binom{k-1}{i} / n^i$ in \cite{conroy2021collection}.
 The particular case with $k=n$ is proven in \cite{trevino2020expected}.
 In both these sources the Christmas stockings theorem is invoked in the proof. 
-
-
+The approach with recurrence equation is used in \cite{146114}, 
+where the chase for the general $k$ hides the simple structure for $k\leq n$. 
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}  %%% Uncomment this line and comment out the ``thebibliography'' section below to use the external .bib file (using bibtex) .
