@@ -86,25 +86,20 @@ pdfkeywords={First keyword, Second keyword, More},
 \section{Link between die and geometric series}
 Let's start with a visual proof of a formula for the finite geometric series sum.
 We consider a growing geometric series $(b_j)$ where $b_{j+1} = r b_j$ with ratio $r > 1$.
-First, we draw the numbers!
+We represent the ratio as $r = 1 + \alpha$, so $b_{k+j} = b_j + \alpha b_j$.
 
-% here goes the plot
 
 \tikzset{ext/.pic={
 \path [fill=white] (-0.2,0)to[bend left](0,0.1)to[bend right](0.2,0.2)to(0.2,0)to[bend left](0,-0.1)to[bend right](-0.2,-0.2)--cycle;
 \draw (-0.2,0)to[bend left](0,0.1)to[bend right](0.2,0.2) (0.2,0)to[bend left](0,-0.1)to[bend right](-0.2,-0.2);
 }}
 
-
-\begin{tikzpicture}
-\foreach \Point/\PointLabel in {(0,0)/0, (1,0)/b_1, (1.8,0)/b_2, (2.9,0)/b_3, (4.9,0)/b_4, (8.4,0)/b_{k-1}, (14.2,0)/b_k}
-\draw[fill=black] \Point circle (0.05) node[below] {$\PointLabel$};
-\path [draw] (0,0)--pic [rotate=90]{ext}(13,0);
-\path [draw] (13,0) -- (16,0);
-\end{tikzpicture}
-
-We represent the ratio $r$ as $r = 1 + \alpha$, so $b_{k+j} = b_j + \alpha b_j$.
-Let's write all segments lengths!
+%\begin{tikzpicture}
+%\foreach \Point/\PointLabel in {(0,0)/0, (1,0)/b_1, (1.8,0)/b_2, (2.9,0)/b_3, (4.9,0)/b_4, (8.4,0)/b_{k-1}, (14.2,0)/b_k}
+%\draw[fill=black] \Point circle (0.05) node[below] {$\PointLabel$};
+%\path [draw] (0,0)--pic [rotate=90]{ext}(13,0);
+%\path [draw] (13,0) -- (16,0);
+%\end{tikzpicture}
 
 \begin{tikzpicture}
 \foreach \Point/\PointLabel in {(0,0)/0, (1,0)/b_1, (1.8,0)/b_2, (2.9,0)/b_3, (4.9,0)/b_4, (8.4,0)/b_{k-1}, (14.2,0)/b_k}
