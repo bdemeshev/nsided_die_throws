@@ -1,3 +1,13 @@
+% TODO:
+% 1. The MAA does not provide a Reference Service. 
+% Please align the style of your references with the MAA Reference Style Guide. (See attached.)
+% 2. Please enter the correct reference number here or compile the 
+% TeX file before submitting. Here and elsewhere.
+% 3. This Filler may be a bit too long. 
+% You may need to remove one sentence. We can wait and see if you prefer.
+
+
+
 %MSC Primary: XXXXX
 \documentclass{article}
 \usepackage{maa-monthly}
@@ -25,7 +35,7 @@
 \begin{document}
 \begin{filler}
 [white]
-\noindent {\large \bf \textsf{The expected number of $n$-sided die throws to collect $k$ points is a geometric series for $k\leq n$}}\\
+\noindent {\large \bf \textsf{The Expected Number of $n$-sided Dice Throws to Collect $k$ Points is a Geometric Series for $k\leq n$}}\\
 
 
 \noindent Let's start with a visual proof of a formula for the sum of a  finite geometric series.
@@ -51,17 +61,17 @@ We represent the ratio as $r = 1 + \alpha$, so $b_{j + 1} = b_j + \alpha b_j$.
 % \end{tikzpicture}
 		
 
-Adding all the segments lengths we see that
+Adding all the segment lengths we see that
 \[
-b_{k} = b_1 + \alpha (b_1 + b_2 + b_3 + \ldots + b_{k-1})
+b_{k} = b_1 + \alpha (b_1 + b_2 + b_3 + \ldots + b_{k-1}).
 \]
 
 This property of geometric series also has an economic intuition. 
-You final welfare $b_k$ equals your initial welfare $b_1$ plus all interest payments,
+Your final welfare $b_k$ equals your initial welfare $b_1$ plus all interest payments,
 where $\alpha$ is the nominal rate of compound interest.
 
 
-Now let's toss a $n$-sided die until we collect $k$ points or more with $k\leq n$.
+Now let's toss a $n$-sided dice until we collect $k$ points or more with $k\leq n$.
 We denote the random number of tosses by $X_k$ and the expected number of tosses 
 by $b_k = E(X_k)$. 
 
@@ -79,25 +89,25 @@ This equation coupled with the initial conditions defines the geometric series w
 
 Hence we obtain
 \[
-b_k = E(X_k) = \left( 1 + \frac{1}{n} \right)^{k-1}
+b_k = E(X_k) = \left( 1 + \frac{1}{n} \right)^{k-1}.
 \]
 
 
 This result appears in the disguised form $E(X_k) = \sum_{i=0}^{k-1} \binom{k-1}{i} / n^i$ in \cite{conroy2021collection}.
 The particular case with $k=n$ is proven in \cite{trevino2020expected}.
-In both these sources the Christmas stockings theorem is invoked in the proof. 
+Both these sources invoke the Christmas stockings theorem in their proofs.
 The approach with recurrence equation is used in \cite{146114}, 
 where the chase for the general $k$ hides the simple structure for $k\leq n$. 
 
 
 \begin{thebibliography}{1}
-\bibitem{conroy2021collection} Conroy, M (2021). \textit{A collection of dice problems}. \url{www.madandmoonly.com/doctormatt/mathematics/dice1.pdf}.
+\bibitem{conroy2021collection} Conroy, M (2021). A collection of dice problems. \url{www.madandmoonly.com/doctormatt/mathematics/dice1.pdf}.
 \bibitem{trevino2020expected} Trevi{\~n}o, Enrique (2020). Expected Number of Dice Rolls for the Sum to Reach n. \textit{Amer. Math. Monthly}. 127(3):257-257.
-\bibitem{146114} Usual Suspect (2019). \textit{Expected number of dice rolls require to make a sum greater than or equal to K?} \url{https://stats.stackexchange.com/q/146114}.
+\bibitem{146114} Usual Suspect (2019). Expected number of dice rolls require to make a sum greater than or equal to K? \url{https://stats.stackexchange.com/q/146114}.
 \end{thebibliography}
 
 
-\rightline{---Submitted by}
+\rightline{---Submitted by Boris Demeshev, HSE University}
 
 
 \bigskip
