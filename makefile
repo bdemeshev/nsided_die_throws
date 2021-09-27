@@ -25,6 +25,7 @@ $(file_name).pdf: $(file_name).tex geometric_series.eps
 geometric_series.eps: geometric_series.tex
 	latex geometric_series.tex
 	dvips -E geometric_series.dvi -o geometric_series.eps
+	sed -i 's/%%BoundingBox: 154 88 309 659/%%BoundingBox: 130 630 480 670/g' geometric_series.eps
 	
 
 nsided-cover.pdf: nsided-cover.tex
@@ -42,10 +43,18 @@ nsided-cover.pdf: nsided-cover.tex
 
 clean:
 	-rm $(file_name).pdf 
+	-rm nsided-cover.pdf
+	-rm geometric_series.eps
 	-rm *.fls 
 	-rm *.log
 	-rm *.out
 	-rm *.aux
 	-rm *.fdb_latexmk
 	-rm *-concordance.tex
+	-rm *.dvi
+	-rm *.xdv
+	-rm *.synctex.gz
+	-rm geometric_series.pdf
+	-rm *.ps
+	
 
