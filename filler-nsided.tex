@@ -1,19 +1,7 @@
-% 60C05 Combinatorial probability
-% 11B37 Recurrences
-
 \documentclass{article}
 \usepackage{maa-monthly}
 
-\usepackage{tikz}
-
-\usetikzlibrary{external}
-
-\tikzset{external/system call={pdflatex \tikzexternalcheckshellescape 
-                                        -halt-on-error
-                                        -interaction=batchmode 
-                                        -jobname "\image" "\texsource"
-                                        && pdftops -eps "\image.pdf"}}
-\tikzexternalize[shell escape=-enable-write18]
+% \usepackage{tikz}
 
 
 \raggedbottom
@@ -44,23 +32,23 @@
 We consider a growing geometric series $(b_j)$ where $b_{j + 1} = r b_j$ with ratio $r > 1$.
 We represent the ratio as $r = 1 + \alpha$, so $b_{j + 1} = b_j + \alpha b_j$.
 
-% \includegraphics[width=11cm]{geometric_series.png}
+\includegraphics[width=11cm]{geometric_series.eps}
 
 
 % here is the tikz code for the picture
-\tikzset{ext/.pic={
-\path [fill=white] (-0.2,0)to[bend left](0,0.1)to[bend right](0.2,0.2)to(0.2,0)to[bend left](0,-0.1)to[bend right](-0.2,-0.2)--cycle;
-\draw (-0.2,0)to[bend left](0,0.1)to[bend right](0.2,0.2) (0.2,0)to[bend left](0,-0.1)to[bend right](-0.2,-0.2);
-}}
-
-\begin{tikzpicture}
-\foreach \Point/\PointLabel in {(0,0)/0, (1,0)/b_1, (1.8,0)/b_2, (2.9,0)/b_3, (4.9,0)/b_4, (7.4,0)/b_{k-1}, (10.2,0)/b_k}
-\draw[fill=black] \Point circle (0.05) node[below] {$\PointLabel$};
-\path [draw] (0,0)--pic [rotate=90]{ext}(11,0);
-
-\foreach \Point/\PointLabel in {(0.45,0)/b_1, (1.4,0)/\alpha b_1, (2.35,0)/\alpha b_2, (3.9,0)/\alpha b_3, (9.0,0)/\alpha b_{k-1}}
-\draw \Point node[above] {$\PointLabel$};
-\end{tikzpicture}
+% \tikzset{ext/.pic={
+% \path [fill=white] (-0.2,0)to[bend left](0,0.1)to[bend right](0.2,0.2)to(0.2,0)to[bend left](0,-0.1)to[bend right](-0.2,-0.2)--cycle;
+% \draw (-0.2,0)to[bend left](0,0.1)to[bend right](0.2,0.2) (0.2,0)to[bend left](0,-0.1)to[bend right](-0.2,-0.2);
+% }}
+% 
+% \begin{tikzpicture}
+% \foreach \Point/\PointLabel in {(0,0)/0, (1,0)/b_1, (1.8,0)/b_2, (2.9,0)/b_3, (4.9,0)/b_4, (7.4,0)/b_{k-1}, (10.2,0)/b_k}
+% \draw[fill=black] \Point circle (0.05) node[below] {$\PointLabel$};
+% \path [draw] (0,0)--pic [rotate=90]{ext}(11,0);
+% 
+% \foreach \Point/\PointLabel in {(0.45,0)/b_1, (1.4,0)/\alpha b_1, (2.35,0)/\alpha b_2, (3.9,0)/\alpha b_3, (9.0,0)/\alpha b_{k-1}}
+% \draw \Point node[above] {$\PointLabel$};
+% \end{tikzpicture}
 		
 
 Adding all the segment lengths we see that
@@ -118,7 +106,11 @@ where the chase for the general $k$ hides the simple structure for $k\leq n$.
 \footnoterule
 \footnotesize{doi.org/10.XXXX/amer.math.monthly.122.XX.XXX}
 
-\footnotesize{MSC: Primary 00X00, Secondary 11Y11; 22Z22}
+\footnotesize{MSC: Primary 60C05, Secondary 11B37}
+% 60C05 Combinatorial probability
+% 11B37 Recurrences
+
+
 
 \end{filler}
 

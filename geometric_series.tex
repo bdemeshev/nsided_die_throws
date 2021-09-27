@@ -1,0 +1,31 @@
+\documentclass{article}
+
+\usepackage{tikz}
+
+\begin{document}
+
+
+\tikzset{ext/.pic={
+\path [fill=white] (-0.2,0)to[bend left](0,0.1)to[bend right](0.2,0.2)to(0.2,0)to[bend left](0,-0.1)to[bend right](-0.2,-0.2)--cycle;
+\draw (-0.2,0)to[bend left](0,0.1)to[bend right](0.2,0.2) (0.2,0)to[bend left](0,-0.1)to[bend right](-0.2,-0.2);
+}}
+ 
+\begin{tikzpicture}
+\foreach \Point/\PointLabel in {(0,0)/0, (1,0)/b_1, (1.8,0)/b_2, (2.9,0)/b_3, (4.9,0)/b_4, (7.4,0)/b_{k-1}, (10.2,0)/b_k}
+\draw[fill=black] \Point circle (0.05) node[below] {$\PointLabel$};
+\path [draw] (0,0)--pic [rotate=90]{ext}(11,0);
+ 
+\foreach \Point/\PointLabel in {(0.45,0)/b_1, (1.4,0)/\alpha b_1, (2.35,0)/\alpha b_2, (3.9,0)/\alpha b_3, (9.0,0)/\alpha b_{k-1}}
+\draw \Point node[above] {$\PointLabel$};
+\end{tikzpicture}
+
+
+% latex geometric_series.tex
+% dvips -E geometric_series.tex -o geometric_series.eps
+% manual correction of bounding box to
+% %%BoundingBox: 130 630 480 670
+% just edit the geometric_series.eps by hand!
+
+
+
+\end{document}
